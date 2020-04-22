@@ -10,34 +10,34 @@ function Form(props) {
         errors, // tracks when something isn't happening a specified way
     } = props
     return (
-        <form className = 'form container'>
+        <form className='form container'>
             <h2>Onboarding Form</h2>
-            <div ClassName = 'errors'>
+            <div className='errors'>
 
             </div>
             <label>Username:&nbsp;
-                <input 
+                <input
                     // value={}
                     // onChange={}
                     name='username'
                     type='text'
-                /></label>
+                /></label><br />
             <label>Email:&nbsp;
-                <input 
+                <input
                     // value={}
                     // onChange={}
                     name='email'
                     type='text'
-                /></label>
+                /></label><br />
             <label>Password:&nbsp;
-                <input 
+                <input
                     // value={}
                     // onChange={}
                     name='password'
                     type='text'
-                /></label>
+                /></label><br />
             <label>Terms of service:&nbsp;
-                <input 
+                <input
                     // checked={}
                     // onChange={}
                     name='TOS'
