@@ -13,8 +13,11 @@ function Form(props) {
     return (
         <form className='form container'>
             <h2>Onboarding Form</h2>
+            {/* 🔥 STEP 10 - SHOW A BUNCH OF ERRORS */}
             <div className='errors'>
-
+                {errors.username}
+                {errors.email}
+                {errors.password}
             </div>
             <label>Username:&nbsp;
                 <input
