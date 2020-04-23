@@ -11,14 +11,11 @@ const initialFormValues = {
   password: '',
   TOS: false,
 }
-
-// 👉 the shape of the validation errors object
 const initialFormErrors = {
   username: '',
   email: '',
   password: '',
 }
-// 🔥 STEP 7 - WE NEED TO BUILD A SCHEMA FOR VALIDATION
 const formSchema = yup.object().shape({
   username: yup
     .string()
@@ -36,36 +33,13 @@ const formSchema = yup.object().shape({
 function App() {
   const [users, setUsers] = useState([])
   const [userValues, setUserValues] = useState(initialFormValues)
-  // 🔥 STEP 1 - WE NEED STATE TO KEEP TRACK OF WHETHER SUBMIT BUTTON IS DISABLED!
   const [formDisabled, setFormDisabled] = useState(true)
-  // 🔥 STEP 2 - WE NEED STATE TO KEEP TRACK OF THE VALIDATION ERRORS!
   const [formErrors, setFormErrors] = useState(initialFormErrors)
-
-  const getUsers = () => {
-    // 🔥 STEP 3 - WE NEED TO FETCH users FROM THE API!
-    // and set them in state
-    axios.get(url)
-      .then(res => {
-        setUsers(res.data)
-      })
-      .catch(err => {
-        console.log(users)
-        debugger
-      })
-  }
-
-  useEffect(() => {
-    // 🔥 STEP 4 - AFTER THE FIRST DOM SURGERY WE NEED users FROM API!
-    getUsers()
-  }, [])
-
   const postUser = user => {
-    // 🔥 STEP 5 - WE NEED A FUNCTION TO POST A NEW user TO THE API!
-    // and set the updated list of users in state
-    // the endpoint responds (on success) with the new user (with id !!)
     axios.post(url, user)
       .then(res => {
         setUsers([...users, res.data])
+        debugger
       })
       .catch(err => {
         console.log(users.data)
@@ -74,8 +48,6 @@ function App() {
   }
 
   useEffect(() => {
-    // 🔥 STEP 8 - IF THE FORM VALUES CHANGE, WE NEED TO RUN VALIDATION
-    // and use them to enable/disable the submit button
     formSchema.isValid(userValues)
       .then(valid => {
         setFormDisabled(!valid)
@@ -86,21 +58,17 @@ function App() {
     evt.preventDefault()
 
     const newUser = {
-      username: userValues,
-      email: userValues,
-      password: userValues,
+      username: userValues.username,
+      email: userValues.email,
+      password: userValues.password,
       TOS: Object.keys(userValues.TOS),
     }
-    // 🔥 STEP 6 - WE NEED TO POST OUR NEW FRIEND TO THE API!
     postUser(newUser)
     setUserValues(initialFormValues)
   }
   const onInputChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
-
-    // 🔥 STEP 9 - IF THE FORM VALUES CHANGE, WE NEED TO RUN VALIDATION
-    // and update the form errors slice of state (so the form can display errors)
 
     yup
       .reach(formSchema, name)
@@ -146,14 +114,13 @@ function App() {
         onSubmit={onSubmit}
         disabled={formDisabled}
         errors={formErrors} />
-      {
-        // users.map(user => {
-        //   // debugger
-        //   return (
-        //     <User key={user.name} details={user}/>
-        //   )
-        // })
-      }
+      {/* {
+        users.map(user => {
+          return (
+            <User key={user.id} details={user}/>
+          )
+        })
+      } */}
     </div>
   )
 }
