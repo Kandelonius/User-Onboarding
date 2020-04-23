@@ -1,3 +1,8 @@
+import { v4 as uuid } from 'uuid'
+
+const username = uuid().slice(0, 5)
+const email = `${username}@acme.com`
+
 describe('User Tests', () => {
     it('can navigate to the site', () => {
         cy.visit('')
@@ -5,12 +10,12 @@ describe('User Tests', () => {
     })
     it('can enter text into the username field', () => {
         cy.get('input[name="username"]')
-            .type('Shane')
-            .should('have.value', 'Shane')
+            .type(username)
+            .should('have.value', username)
 
         cy.get('input[name="email"]')
-        .type('dog@stu.com')
-        .should('have.value', 'dog@stu.com')
+        .type(email)
+        .should('have.value', email)
 
         cy.get('input[name=password]')
         .type('anything')
