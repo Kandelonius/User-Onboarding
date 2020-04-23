@@ -19,18 +19,18 @@ const initialFormErrors = {
 const formSchema = yup.object().shape({
   username: yup
     .string()
-    .min(2, 'username must have at least 2 characters! ')
+    .min(2, 'username must have at least 2 characters!')
     .required('username is required'),
   email: yup
     .string()
-    .email('a VALID email is required ')
+    .email('a VALID email is required')
     .required('email is required'),
   password: yup
     .string()
-    .min(6, 'password must have at least 6 characters! ')
+    .min(6, 'password must have at least 6 characters!')
     .required('password is required'),
     termsOfService: yup.boolean()
-    .oneOf([true], 'You must accept the Terms of Service! ')
+    .oneOf([true], 'You must accept the Terms of Service!')
     .required('TOS is required'),
 })
 function App() {
@@ -45,7 +45,7 @@ function App() {
         // debugger
       })
       .catch(err => {
-        console.log(users.data)
+        console.log(err)
         debugger
       })
   }
@@ -72,6 +72,7 @@ function App() {
   const onInputChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
+    const checked = evt.target.checked
 
     yup
       .reach(formSchema, name)
@@ -95,28 +96,39 @@ function App() {
     })
   }
 
-  const onCheckboxChange = evt => {
-    const { name } = evt.target
+  const onTOS = evt => {
+    const {name} = evt.target
     const isChecked = evt.target.checked
 
     setUserValues({
       ...userValues,
-      TOS: {
-        ...userValues.TOS,
-        [name]: isChecked,
-      }
+      [name]: isChecked
     })
   }
+
+  // const onCheckboxChange = evt => {
+  //   const { name } = evt.target
+  //   const isChecked = evt.target.checked
+
+  //   setUserValues({
+  //     ...userValues,
+  //       ...userValues.TOS,
+  //       [name]: isChecked,
+  //   })
+  // }
 
   return (
     <div className="App">
       <Form
         values={userValues}
         onInputChange={onInputChange}
-        onCheckboxChange={onCheckboxChange}
+        // onCheckboxChange={onCheckboxChange}
         onSubmit={onSubmit}
         disabled={formDisabled}
-        errors={formErrors} />
+        errors={formErrors}
+        onTOS={onTOS}
+
+        />
       {
         users.map(user => {
           return (

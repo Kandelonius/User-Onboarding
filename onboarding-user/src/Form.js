@@ -4,7 +4,8 @@ function Form(props) {
     const {
         values, // for values
         onInputChange, // tracks when input changes
-        onCheckboxChange, // tracks checkbox state
+        // onCheckboxChange, // tracks checkbox state
+        onTOS,
         onSubmit, // checks if something is being submitted
         disabled, // disables an element or component
         errors, // tracks when something isn't happening a specified way
@@ -43,7 +44,7 @@ function Form(props) {
             <label>Terms of service:&nbsp;
                 <input
                     checked={values.TOS}
-                    onChange={onCheckboxChange}
+                    onChange={onTOS}
                     name='TOS'
                     type='checkbox'
                 /></label>
