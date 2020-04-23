@@ -83,8 +83,8 @@ function App() {
 
     setUserValues({
       ...userValues,
-      hobbies: {
-        ...userValues.hobbies,
+      TOS: {
+        ...userValues.TOS,
         [name]: isChecked,
       }
     })

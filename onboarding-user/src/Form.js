@@ -9,6 +9,7 @@ function Form(props) {
         disabled, // disables an element or component
         errors, // tracks when something isn't happening a specified way
     } = props
+    // debugger
     return (
         <form className='form container'>
             <h2>Onboarding Form</h2>
@@ -17,29 +18,29 @@ function Form(props) {
             </div>
             <label>Username:&nbsp;
                 <input
-                    // value={}
-                    // onChange={}
+                    value={values.username}
+                    onChange={onInputChange}
                     name='username'
                     type='text'
                 /></label><br />
             <label>Email:&nbsp;
                 <input
-                    // value={}
-                    // onChange={}
+                    value={values.email}
+                    onChange={onInputChange}
                     name='email'
                     type='text'
                 /></label><br />
             <label>Password:&nbsp;
                 <input
-                    // value={}
-                    // onChange={}
+                    value={values.password}
+                    onChange={onInputChange}
                     name='password'
                     type='text'
                 /></label><br />
             <label>Terms of service:&nbsp;
                 <input
-                    // checked={}
-                    // onChange={}
+                    checked={values.TOS}
+                    onChange={onCheckboxChange}
                     name='TOS'
                     type='checkbox'
                 /></label>
