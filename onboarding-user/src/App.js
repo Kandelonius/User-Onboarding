@@ -114,13 +114,13 @@ function App() {
         onSubmit={onSubmit}
         disabled={formDisabled}
         errors={formErrors} />
-      {/* {
+      {
         users.map(user => {
           return (
             <User key={user.id} details={user}/>
           )
         })
-      } */}
+      }
     </div>
   )
 }
