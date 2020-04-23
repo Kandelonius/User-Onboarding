@@ -39,7 +39,7 @@ function App() {
     axios.post(url, user)
       .then(res => {
         setUsers([...users, res.data])
-        debugger
+        // debugger
       })
       .catch(err => {
         console.log(users.data)
