@@ -29,9 +29,9 @@ const formSchema = yup.object().shape({
     .string()
     .min(6, 'password must have at least 6 characters!')
     .required('password is required'),
-    termsOfService: yup.boolean()
-    .oneOf([true], 'You must accept the Terms of Service!')
-    .required('TOS is required'),
+    // termsOfService: yup.boolean()
+    // .oneOf([true], 'You must accept the Terms of Service!')
+    // .required('TOS is required'),
 })
 function App() {
   const [users, setUsers] = useState([])
